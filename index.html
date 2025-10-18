@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐小助手（VIP至尊版）</title>
+    <link rel="stylesheet" href="music-style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">🎵 音乐小助手 🎵（蝰蛇超清音质）</div>
+            <!-- 会员信息区：新增领取按钮 -->
+            <div class="vip-info">
+                <span class="vip-expire" id="vipExpireTime">会员到期时间：未领取今日会员</span>
+                <button class="btn vip-get-btn" id="getVipBtn">领取今日会员</button>
+            </div>
+        </div>
+        <div class="time" id="currentTime"></div>
+        <button class="btn primary" id="mainBtn">
+            <span class="icon">🎵</span>
+            打开音乐工具
+        </button>
+        <audio id="audioPlayer" controls style="display:none;"></audio>
+    </div>
+
+    <!-- 原有弹窗结构保持不变 -->
+    <div class="overlay" id="promptOverlay"></div>
+    <div class="prompt-box" id="promptBox">
+        <h3 id="promptTitle">🔍 搜索歌曲</h3>
+        <div class="input-group">
+            <label for="songName">歌曲名（可加歌手）</label>
+            <input type="text" id="songName" placeholder="例如：晴天 周杰伦" required>
+        </div>
+        <div class="input-group">
+            <label for="showCount">显示数量（1-100）</label>
+            <input type="number" id="showCount" value="10" min="1" max="100" required>
+        </div>
+        <button class="btn primary" id="promptConfirm">🔍确认搜索</button>
+        <button class="btn secondary" id="promptCancel">取消</button>
+    </div>
+
+    <div class="overlay" id="choiceOverlay"></div>
+    <div class="choice-box" id="choiceBox">
+        <h3 id="choiceTitle">请选择操作</h3>
+        <div class="choice-scroll" id="choiceScroll">
+            <div id="choiceList"></div>
+        </div>
+    </div>
+
+    <div class="link-overlay" id="linkOverlay"></div>
+    <div class="link-prompt-box" id="linkPromptBox">
+        <h3 id="linkPromptTitle">🔗 输入音乐直链播放</h3>
+        <div class="input-group">
+            <label for="musicLink">音乐直链</label>
+            <input type="text" id="musicLink" placeholder="输入任意音乐直链" required>
+        </div>
+        <button class="btn primary" id="linkConfirm">确认播放</button>
+        <button class="btn secondary" id="linkCancel">取消</button>
+    </div>
+
+    <div class="file-path-overlay" id="filePathOverlay"></div>
+    <div class="file-path-prompt-box" id="filePathPromptBox">
+        <h3 id="filePathPromptTitle">📁 本地文件播放</h3>
+        <div class="input-group">
+            <label for="filePath">文件路径</label>
+            <input type="text" id="filePath" placeholder="输入文件路径" required>
+        </div>
+        <div class="input-group">
+            <label>或选择本地文件（只有浏览器端才可以使用）</label>
+            <button class="btn secondary file-btn" id="selectFileBtn">
+                <span class="icon">📂</span>
+                选择文件
+            </button>
+            <input type="file" id="fileInput">
+        </div>
+        <button class="btn primary" id="filePathConfirm">确认播放</button>
+        <button class="btn secondary" id="filePathCancel">取消</button>
+    </div>
+
+    <div class="loading-box" id="loadingBox">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">正在搜索中...</div>
+    </div>
+    <div class="toast" id="toast"></div>
+
+    <script src="music-script.js"></script>
+</body>
+</html>
